@@ -1,3 +1,8 @@
+"""
+exp ::= term  | exp + term | exp - term
+term ::= factor * term | factor / term | factor
+factor ::= number | ( exp )
+"""
 
 class Calculator():
     def __init__(self, tokens):
