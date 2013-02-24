@@ -1,3 +1,9 @@
+"""
+exp ::= term  | exp + term | exp - term
+term ::= factor * term | factor / term | factor
+factor ::= number | ( exp )
+"""
+
 class Calculator():
     def __init__(self, tokens):
         self._tokens = tokens
@@ -32,15 +38,15 @@ class Calculator():
         result = self.factor()
         while self._current is '*':
             self.next()
-            result *= self.factor()
+            result *= self.term()
         while self._current is '/':
             self.next()
-            result /= self.factor()
+            result /= self.term()
         return result
 
 if __name__ == '__main__':
     while True:
-        lst = list(raw_input('> '))
+        lst = list(raw_input('> ').replace(' ', ''))
         tokens = []
         for i in range(len(lst)):
             if lst[i].isdigit() and len(tokens) > 0 and tokens[-1].isdigit():
