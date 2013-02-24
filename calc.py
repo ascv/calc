@@ -1,6 +1,6 @@
 """
 exp ::= term  | exp + term | exp - term
-term ::= factor | factor * term | factor / term
+term ::= factor * term | factor / term | factor
 factor ::= number | ( exp )
 """
 
@@ -35,13 +35,13 @@ class Calculator():
         self._current = self._tokens[0] if len(self._tokens) > 0 else None
 
     def term(self):
-        result = self.factor()
         while self._current is '*':
             self.next()
             result *= self.term()
         while self._current is '/':
             self.next()
-            result /= self.term()
+            result = result / self.term()
+        result = self.factor()
         return result
 
 if __name__ == '__main__':
@@ -49,7 +49,7 @@ if __name__ == '__main__':
         lst = list(raw_input('> ').replace(' ', ''))
         tokens = []
         for i in range(len(lst)):
-            if lst[i].isdigit() and i > 0 and (tokens[-1].isdigit() or tokens[-1][-1] is '.'):
+            if lst[i].isdigit() and i > 0 and  (tokens[-1].isdigit() or tokens[-1][-1] is '.'):
                 tokens[-1] += lst[i]          
             elif lst[i] is '.' and i > 0 and tokens[-1].isdigit():
                 tokens[-1] += lst[i]
