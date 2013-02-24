@@ -49,9 +49,9 @@ if __name__ == '__main__':
         lst = list(raw_input('> ').replace(' ', ''))
         tokens = []
         for i in range(len(lst)):
-            if lst[i].isdigit() and len(tokens) > 0 and (tokens[-1].isdigit() or tokens[-1][-1] is '.'):
+            if lst[i].isdigit() and i > 0 and  (tokens[-1].isdigit() or tokens[-1][-1] is '.'):
                 tokens[-1] += lst[i]          
-            elif lst[i] is '.' and len(tokens) > 0 and tokens[-1].isdigit():
+            elif lst[i] is '.' and i > 0 and tokens[-1].isdigit():
                 tokens[-1] += lst[i]
             else:
                 tokens.append(lst[i])
