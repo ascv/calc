@@ -1,6 +1,6 @@
 """
 exp ::= term  | exp + term | exp - term
-term ::= factor * term | factor / term | factor
+term ::= factor | factor * term | factor / term
 factor ::= number | ( exp )
 """
 
