@@ -21,7 +21,7 @@ class Calculator():
 
     def factor(self):
         result = None
-        if self._current.isdigit():
+        if self._current[0].isdigit() or self._current[-1].isdigit():
             result = float(self._current)
             self.next()
         elif self._current is '(':
@@ -49,8 +49,10 @@ if __name__ == '__main__':
         lst = list(raw_input('> ').replace(' ', ''))
         tokens = []
         for i in range(len(lst)):
-            if lst[i].isdigit() and len(tokens) > 0 and tokens[-1].isdigit():
+            if lst[i].isdigit() and len(tokens) > 0 and (tokens[-1].isdigit() or tokens[-1][-1] is '.'):
+                tokens[-1] += lst[i]          
+            elif lst[i] is '.' and len(tokens) > 0 and tokens[-1].isdigit():
                 tokens[-1] += lst[i]
             else:
                 tokens.append(lst[i])
-        print Calculator(tokens).exp()
+        print Calculator(tokens).exp() 
