@@ -37,12 +37,13 @@ class Calculator():
 
     def term(self):
         result = self.factor()
-        while self._current == '*':
-            self.next()
-            result *= self.term()
-        while self._current == '/':
-            self.next()
-            result /= self.term()
+        while self._current in ('*', '/'):
+            if self._current == '*':
+                self.next()
+                result *= self.term()
+            if self._current == '/':
+                self.next()
+                result /= self.term()
         return result
 
 if __name__ == '__main__':
