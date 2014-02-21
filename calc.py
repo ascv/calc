@@ -11,12 +11,12 @@ class Calculator():
     
     def exp(self):
         result = self.term()
-        while self._current is '+':
+        while self._current in ('+', '-'):
             self.next()
-            result += self.term()
-        while self._current is '-':
-            self.next()
-            result -= self.term()
+            if result is '+':
+                result += self.term()
+            if result is '-':
+                result -= self.term()
         return result
 
     def factor(self):
