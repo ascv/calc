@@ -12,10 +12,11 @@ class Calculator():
     def exp(self):
         result = self.term()
         while self._current in ('+', '-'):
-            self.next()
-            if result is '+':
+            if self._current == '+':
+                self.next()
                 result += self.term()
-            if result is '-':
+            if self._current == '-':
+                self.next()
                 result -= self.term()
         return result
 
@@ -36,10 +37,10 @@ class Calculator():
 
     def term(self):
         result = self.factor()
-        while self._current is '*':
+        while self._current == '*':
             self.next()
             result *= self.term()
-        while self._current is '/':
+        while self._current == '/':
             self.next()
             result /= self.term()
         return result
